@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"encoding/json"
+	proxy "tebakaja_lb_proxy/proxy"
 )
 
 
@@ -21,7 +22,7 @@ func (s *CryptoServiceImpl) CryptoPredictionService(ctx context.Context, req Pre
 		}, err
 	}
 
-	endpoint := fmt.Sprintf("%s/prediction", CRYPTO_ENDPOINT)
+	endpoint := fmt.Sprintf("%s/prediction", proxy.GetEndpointByRestService("crypto"))
 	httpReq, err := http.NewRequestWithContext(ctx, "POST", endpoint, bytes.NewBuffer(reqBody))
 	if err != nil {
 		return ApiResponse{

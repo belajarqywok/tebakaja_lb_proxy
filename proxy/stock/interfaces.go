@@ -2,9 +2,9 @@ package stock
 
 import "context"
 
-type CryptoService interface {
-	CryptoListsService(ctx context.Context) (ApiResponse, error)
-	CryptoPredictionService(ctx context.Context, req PredictionRequest) (ApiResponse, error)
+type StockService interface {
+	StockListsService(ctx context.Context) (ApiResponse, error)
+	StockPredictionService(ctx context.Context, req PredictionRequest) (ApiResponse, error)
 }
 
-type CryptoServiceImpl struct{}
+type StockServiceImpl struct{}

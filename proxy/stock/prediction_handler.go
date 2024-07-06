@@ -13,9 +13,9 @@ import (
 
 
 /*
- * --- Cryptocurrency Prediction Handler ---
+ * --- Stock Prediction Handler ---
  */
-func CryptoPredictionHandler(service CryptoService) fiber.Handler {
+func StockPredictionHandler(service StockService) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		ctx, cancel := context.WithTimeout(c.Context(), 120*time.Second)
 		defer cancel()
@@ -39,7 +39,7 @@ func CryptoPredictionHandler(service CryptoService) fiber.Handler {
 				return
 			}
 
-			apiResponse, err := service.CryptoPredictionService(ctx, predictionReq)
+			apiResponse, err := service.StockPredictionService(ctx, predictionReq)
 			if err != nil {
 				log.Printf("[%s] %v", time.Now().Format("2006-01-02 15:04:05"), err)
 				ch <- apiResponse

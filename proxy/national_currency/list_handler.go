@@ -12,9 +12,9 @@ import (
 
 
 /*
- *  --- Cryptocurrency Prediction Model Lists Handler ---
+ *  --- National Currency Prediction Model Lists Handler ---
  */
-func CryptoListsHandler(service CryptoService) fiber.Handler {
+func NationalCurrencyListsHandler(service NationalCurrencyService) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		ctx, cancel := context.WithTimeout(c.Context(), 120*time.Second)
 		defer cancel()
@@ -26,7 +26,7 @@ func CryptoListsHandler(service CryptoService) fiber.Handler {
 		go func() {
 			defer wg.Done()
 
-			apiResponse, err := service.CryptoListsService(ctx)
+			apiResponse, err := service.NationalCurrencyListsService(ctx)
 			if err != nil {
 				log.Printf("[%s] %v", time.Now().Format("2006-01-02 15:04:05"), err)
 				ch <- apiResponse

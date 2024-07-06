@@ -5,14 +5,15 @@ import (
 	"context"
 	"net/http"
 	"encoding/json"
+	proxy "tebakaja_lb_proxy/proxy"
 )
 
 
 /*
- *  --- Cryptocurrency Prediction Model Lists Service ---
+ *  --- Stock Prediction Model Lists Service ---
  */
-func (s *CryptoServiceImpl) CryptoListsService(ctx context.Context) (ApiResponse, error) {
-	endpoint := fmt.Sprintf("%s/lists", CRYPTO_ENDPOINT)
+func (s *StockServiceImpl) StockListsService(ctx context.Context) (ApiResponse, error) {
+	endpoint := fmt.Sprintf("%s/lists", proxy.GetEndpointByRestService("stock"))
 	req, err := http.NewRequestWithContext(ctx, "GET", endpoint, nil)
 	if err != nil {
 		return ApiResponse{

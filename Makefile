@@ -18,11 +18,27 @@ traefik-test:
 		--api.dashboard=true \
 		--api.insecure=false
 
+stock-list-test:
+	curl -X GET $(ENDPOINT)/stock/lists
+
+stock-prediction-test:
+	curl -X POST $(ENDPOINT)/stock/prediction \
+		-H "Content-Type: application/json" \
+		-d "{\"days\": 2, \"currency\": \"BTC-USD\"}"
+
 crypto-list-test:
 	curl -X GET $(ENDPOINT)/crypto/lists
 
 crypto-prediction-test:
 	curl -X POST $(ENDPOINT)/crypto/prediction \
+		-H "Content-Type: application/json" \
+		-d "{\"days\": 2, \"currency\": \"BTC-USD\"}"
+
+natcurr-list-test:
+	curl -X GET $(ENDPOINT)/national-currency/lists
+
+natcurr-prediction-test:
+	curl -X POST $(ENDPOINT)/national-currency/prediction \
 		-H "Content-Type: application/json" \
 		-d "{\"days\": 2, \"currency\": \"BTC-USD\"}"
 	
