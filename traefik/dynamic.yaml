@@ -1,0 +1,42 @@
+http:
+  middlewares:
+    dashboard-auth:
+      basicAuth:
+        users:
+          # - "admin:$apr1$vO3/IDvg$JrbhU9NSQub83/mQu9/fP1"
+        
+    rate-limit:
+      rateLimit:
+        average: 100
+        burst: 50
+
+  routers:
+    api:
+      rule: "PathPrefix(`/api`)"
+      entryPoints:
+        - "web"
+      middlewares:
+        - "dashboard-auth"
+        - "rate-limit"
+      service: "api@internal"
+
+    dashboard:
+      rule: "PathPrefix(`/dashboard`)"
+      entryPoints:
+        - "web"
+      middlewares:
+        - "dashboard-auth"
+        - "rate-limit"
+      service: "api@internal"
+
+    crypto-lists:
+      rule: "PathPrefix(`/crypto/lists`)"
+      entryPoints:
+        - "websecure"
+      service: "crypto-lists-service"
+
+  services:
+    crypto-lists-service:
+      loadBalancer:
+        servers:
+          - url: "https://qywok-cryptocurrency-prediction.hf.space/crypto/lists" 

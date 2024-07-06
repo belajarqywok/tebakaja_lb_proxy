@@ -1,0 +1,14 @@
+providers:
+  file:
+    filename: ./traefik/dynamic.yaml
+    watch: true
+
+entryPoints:
+  web:
+    address: ":7860"
+  websecure:
+    address: ":443"
+
+api:
+  dashboard: true
+  insecure: false
