@@ -23,6 +23,9 @@ traefik-test:
 		--api.dashboard=true \
 		--api.insecure=false
 
+endpoints_check:
+	bash -c 'chmod +x endpoints_test.sh && ./endpoints_test.sh'
+
 # 
 #    --- Development Testing ---
 # 
@@ -51,88 +54,3 @@ natcurr-prediction-test:
 		-H "Content-Type: application/json" \
 		-d "{\"days\": 2, \"currency\": \"BTC-USD\"}"
 
-
-# 
-#    --- Production Testing (Proxy 0) ---
-# 
-
-stock-list-prod-0:
-	curl -X GET $(PROD_ENDPOINT_0)/stock/lists
-
-stock-prediction-prod-0:
-	curl -X POST $(PROD_ENDPOINT_0)/stock/prediction \
-		-H "Content-Type: application/json" \
-		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
-
-crypto-list-prod-0:
-	curl -X GET $(PROD_ENDPOINT_0)/crypto/lists
-
-crypto-prediction-prod-0:
-	curl -X POST $(PROD_ENDPOINT_0)/crypto/prediction \
-		-H "Content-Type: application/json" \
-		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
-
-natcurr-list-prod-0:
-	curl -X GET $(PROD_ENDPOINT_0)/national-currency/lists
-
-natcurr-prediction-prod-0:
-	curl -X POST $(PROD_ENDPOINT_0)/national-currency/prediction \
-		-H "Content-Type: application/json" \
-		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
-
-# 
-#    --- Production Testing (Proxy 1) ---
-# 
-
-stock-list-prod-1:
-	curl -X GET $(PROD_ENDPOINT_1)/stock/lists
-
-stock-prediction-prod-1:
-	curl -X POST $(PROD_ENDPOINT_1)/stock/prediction \
-		-H "Content-Type: application/json" \
-		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
-
-crypto-list-prod-1:
-	curl -X GET $(PROD_ENDPOINT_1)/crypto/lists
-
-crypto-prediction-prod-1:
-	curl -X POST $(PROD_ENDPOINT_1)/crypto/prediction \
-		-H "Content-Type: application/json" \
-		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
-
-natcurr-list-prod-1:
-	curl -X GET $(PROD_ENDPOINT_1)/national-currency/lists
-
-natcurr-prediction-prod-1:
-	curl -X POST $(PROD_ENDPOINT_1)/national-currency/prediction \
-		-H "Content-Type: application/json" \
-		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
-
-# 
-#    --- Production Testing (Proxy 2) ---
-# 
-
-stock-list-prod-2:
-	curl -X GET $(PROD_ENDPOINT_2)/stock/lists
-
-stock-prediction-prod-2:
-	curl -X POST $(PROD_ENDPOINT_2)/stock/prediction \
-		-H "Content-Type: application/json" \
-		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
-
-crypto-list-prod-2:
-	curl -X GET $(PROD_ENDPOINT_2)/crypto/lists
-
-crypto-prediction-prod-2:
-	curl -X POST $(PROD_ENDPOINT_2)/crypto/prediction \
-		-H "Content-Type: application/json" \
-		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
-
-natcurr-list-prod-2:
-	curl -X GET $(PROD_ENDPOINT_2)/national-currency/lists
-
-natcurr-prediction-prod-2:
-	curl -X POST $(PROD_ENDPOINT_2)/national-currency/prediction \
-		-H "Content-Type: application/json" \
-		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
-		
