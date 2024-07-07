@@ -5,6 +5,7 @@ import (
 	"context"
 	"net/http"
 	"encoding/json"
+
 	proxy "tebakaja_lb_proxy/proxy"
 )
 
@@ -29,6 +30,7 @@ func (s *StockServiceImpl) StockListsService(ctx context.Context) (ApiResponse, 
 			StatusCode: http.StatusInternalServerError,
 		}, err
 	}
+
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {

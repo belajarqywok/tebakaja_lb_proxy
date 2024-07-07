@@ -9,7 +9,10 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/limiter"
 )
 
-// Logging Middleware
+
+/*
+ *  --- Logging Middleware ---
+*/
 func LoggingMiddleware(c *fiber.Ctx) error {
 	start := time.Now()
 	err   := c.Next()
@@ -28,7 +31,7 @@ func LoggingMiddleware(c *fiber.Ctx) error {
 func RateLimiterMiddleware() func(*fiber.Ctx) error {
 	return limiter.New(limiter.Config{
 		Max:        200,
-		Expiration: 1 * time.Minute,
+		Expiration: (1 * time.Minute),
 
 		KeyGenerator: func(c *fiber.Ctx) string {
 			return c.IP()
@@ -41,3 +44,4 @@ func RateLimiterMiddleware() func(*fiber.Ctx) error {
 		},
 	})
 }
+

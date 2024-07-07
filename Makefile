@@ -1,6 +1,7 @@
 ENDPOINT=http://192.168.137.1:7860
 
-start: go run main.go
+start:
+	go run main.go
 
 haproxy-test:
 	haproxy -f ./haproxy/haproxy.cfg
