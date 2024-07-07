@@ -1,5 +1,5 @@
 ---
-title: TebakAja Proxy Space-0
+title: TebakAja Proxy Space
 emoji: ⚙
 colorFrom: purple
 colorTo: pink

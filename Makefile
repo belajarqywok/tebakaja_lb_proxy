@@ -1,5 +1,8 @@
 DEV_ENDPOINT=http://192.168.137.1:7860
-PROD_ENDPOINT=https://qywok-tebakaja-proxy-space-0.hf.space
+
+PROD_ENDPOINT_0=https://qywok-tebakaja-proxy-space-0.hf.space
+PROD_ENDPOINT_1=https://qywok-tebakaja-proxy-space-1.hf.space
+PROD_ENDPOINT_2=https://qywok-tebakaja-proxy-space-2.hf.space
 
 start:
 	go run main.go
@@ -19,6 +22,10 @@ traefik-test:
 		--entryPoints.web.http.redirections.entryPoint.scheme=https \
 		--api.dashboard=true \
 		--api.insecure=false
+
+# 
+#    --- Development Testing ---
+# 
 
 stock-list-test:
 	curl -X GET $(DEV_ENDPOINT)/stock/lists
@@ -45,26 +52,87 @@ natcurr-prediction-test:
 		-d "{\"days\": 2, \"currency\": \"BTC-USD\"}"
 
 
-stock-list-prod:
-	curl -X GET $(PROD_ENDPOINT)/stock/lists
+# 
+#    --- Production Testing (Proxy 0) ---
+# 
 
-stock-prediction-prod:
-	curl -X POST $(PROD_ENDPOINT)/stock/prediction \
+stock-list-prod-0:
+	curl -X GET $(PROD_ENDPOINT_0)/stock/lists
+
+stock-prediction-prod-0:
+	curl -X POST $(PROD_ENDPOINT_0)/stock/prediction \
 		-H "Content-Type: application/json" \
 		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
 
-crypto-list-prod:
-	curl -X GET $(PROD_ENDPOINT)/crypto/lists
+crypto-list-prod-0:
+	curl -X GET $(PROD_ENDPOINT_0)/crypto/lists
 
-crypto-prediction-prod:
-	curl -X POST $(PROD_ENDPOINT)/crypto/prediction \
+crypto-prediction-prod-0:
+	curl -X POST $(PROD_ENDPOINT_0)/crypto/prediction \
 		-H "Content-Type: application/json" \
 		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
 
-natcurr-list-prod:
-	curl -X GET $(PROD_ENDPOINT)/national-currency/lists
+natcurr-list-prod-0:
+	curl -X GET $(PROD_ENDPOINT_0)/national-currency/lists
 
-natcurr-prediction-prod:
-	curl -X POST $(PROD_ENDPOINT)/national-currency/prediction \
+natcurr-prediction-prod-0:
+	curl -X POST $(PROD_ENDPOINT_0)/national-currency/prediction \
 		-H "Content-Type: application/json" \
 		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
+
+# 
+#    --- Production Testing (Proxy 1) ---
+# 
+
+stock-list-prod-1:
+	curl -X GET $(PROD_ENDPOINT_1)/stock/lists
+
+stock-prediction-prod-1:
+	curl -X POST $(PROD_ENDPOINT_1)/stock/prediction \
+		-H "Content-Type: application/json" \
+		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
+
+crypto-list-prod-1:
+	curl -X GET $(PROD_ENDPOINT_1)/crypto/lists
+
+crypto-prediction-prod-1:
+	curl -X POST $(PROD_ENDPOINT_1)/crypto/prediction \
+		-H "Content-Type: application/json" \
+		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
+
+natcurr-list-prod-1:
+	curl -X GET $(PROD_ENDPOINT_1)/national-currency/lists
+
+natcurr-prediction-prod-1:
+	curl -X POST $(PROD_ENDPOINT_1)/national-currency/prediction \
+		-H "Content-Type: application/json" \
+		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
+
+# 
+#    --- Production Testing (Proxy 2) ---
+# 
+
+stock-list-prod-2:
+	curl -X GET $(PROD_ENDPOINT_2)/stock/lists
+
+stock-prediction-prod-2:
+	curl -X POST $(PROD_ENDPOINT_2)/stock/prediction \
+		-H "Content-Type: application/json" \
+		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
+
+crypto-list-prod-2:
+	curl -X GET $(PROD_ENDPOINT_2)/crypto/lists
+
+crypto-prediction-prod-2:
+	curl -X POST $(PROD_ENDPOINT_2)/crypto/prediction \
+		-H "Content-Type: application/json" \
+		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
+
+natcurr-list-prod-2:
+	curl -X GET $(PROD_ENDPOINT_2)/national-currency/lists
+
+natcurr-prediction-prod-2:
+	curl -X POST $(PROD_ENDPOINT_2)/national-currency/prediction \
+		-H "Content-Type: application/json" \
+		-d "{\"days\": 7, \"currency\": \"BTC-USD\"}"
+		

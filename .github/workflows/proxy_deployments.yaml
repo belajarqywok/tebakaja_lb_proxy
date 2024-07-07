@@ -1,0 +1,133 @@
+name: Proxy Deployment
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+
+jobs:    
+  tebakaja_proxy_space-0:
+    name: Proxy-0 Deployment 
+    runs-on: ubuntu-latest
+    environment: Production
+
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      SPACE_NAME: tebakaja_proxy_space-0
+      HF_USERNAME: qywok
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1000
+
+      - name: Check git status
+        run: git status
+
+      - name: Configure git
+        run: |
+          git config --local user.email "alfariqyraihan@gmail.com"
+          git config --local user.name "qywok"
+
+      - name: Pull changes from remote
+        run: |
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
+          (git merge --strategy-option theirs)
+
+      - name: Add and commit changes
+        run: |
+          git add -A 
+          git diff-index --quiet HEAD || git commit -m "tebakaja_proxy_space-0"
+
+      - name: Push to Hugging Face
+        run: |
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
+  
+  tebakaja_proxy_space-1:
+    name: Proxy-1 Deployment
+    runs-on: ubuntu-latest
+    environment: Production
+
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      SPACE_NAME: tebakaja_proxy_space-1
+      HF_USERNAME: qywok
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1000
+
+      - name: Check git status
+        run: git status
+
+      - name: Configure git
+        run: |
+          git config --local user.email "alfariqyraihan@gmail.com"
+          git config --local user.name "qywok"
+
+      - name: Pull changes from remote
+        run: |
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
+          (git merge --strategy-option theirs)
+
+      - name: Add and commit changes
+        run: |
+          git add -A 
+          git diff-index --quiet HEAD || git commit -m "tebakaja_proxy_space-1"
+
+      - name: Push to Hugging Face
+        run: |
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
+
+
+  tebakaja_proxy_space-2:
+    name: Proxy-2 Deployment
+    runs-on: ubuntu-latest
+    environment: Production
+
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      SPACE_NAME: tebakaja_proxy_space-2
+      HF_USERNAME: qywok
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1000
+
+      - name: Check git status
+        run: git status
+
+      - name: Configure git
+        run: |
+          git config --local user.email "alfariqyraihan@gmail.com"
+          git config --local user.name "qywok"
+
+      - name: Pull changes from remote
+        run: |
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
+          (git merge --strategy-option theirs)
+
+      - name: Add and commit changes
+        run: |
+          git add -A 
+          git diff-index --quiet HEAD || git commit -m "tebakaja_proxy_space-2"
+
+      - name: Push to Hugging Face
+        run: |
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
