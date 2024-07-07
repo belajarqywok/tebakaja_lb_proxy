@@ -1,0 +1,20 @@
+# git and github
+/.github
+README.md
+
+# vscode
+/.vscode 
+
+# proxies
+/nginx
+/traefik
+/haproxy
+
+# compose
+docker-compose.yaml
+
+# make
+Makefile
+
+# postman
+/postman

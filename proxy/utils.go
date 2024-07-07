@@ -1,45 +1,43 @@
 package proxy
 
-import "time"
+import "math/rand"
+
+var serviceUrls = map[string][]string{
+	"crypto": {
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+	},
+	"national": {
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+	},
+	"stock": {
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+		"https://qywok-cryptocurrency-prediction.hf.space/crypto",
+	},
+}
 
 func GetEndpointByRestService(svc_name string) string {
-	second := time.Now().Second()
-
-	var divisorToString map[int]string
+	var selectedUrls []string
 	switch svc_name {
-		case "crypto":
-			divisorToString = map[int]string{
-				9: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-				7: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-				5: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-				3: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-				2: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-			}
-		case "national":
-			divisorToString = map[int]string{
-				9: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-				7: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-				5: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-				3: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-				2: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-			}
-		default:
-			divisorToString = map[int]string{
-				9: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-				7: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-				5: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-				3: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-				2: "https://qywok-cryptocurrency-prediction.hf.space/crypto",
-			}
+	case "crypto":
+		selectedUrls = serviceUrls["crypto"]
+	case "national":
+		selectedUrls = serviceUrls["national"]
+	default:
+		selectedUrls = serviceUrls["stock"]
 	}
 
-	var result string
-	for divisor, str := range divisorToString {
-		if (second % divisor) == 0 {
-			result += str
-			break
-		}
-	}
+	randomIndex := rand.Intn(len(selectedUrls))
 
-	return result
+	return selectedUrls[randomIndex]
 }
