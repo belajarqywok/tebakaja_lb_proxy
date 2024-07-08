@@ -7,11 +7,29 @@ on:
     tags:
       - '*'
 
-jobs:    
+jobs:
+  # Unit Testing
+  unit_testing:
+    name: Integration Testing
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: unit testing
+        run: echo "testing"  
+
+  # TebakAja Proxy-0
   tebakaja_proxy_space-0:
     name: Proxy-0 Deployment 
     runs-on: ubuntu-latest
-    environment: Production
+    needs: unit_testing
 
     env:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -49,10 +67,12 @@ jobs:
         run: |
           git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
   
+
+  # TebakAja Proxy-1
   tebakaja_proxy_space-1:
     name: Proxy-1 Deployment
     runs-on: ubuntu-latest
-    environment: Production
+    needs: unit_testing
 
     env:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -91,10 +111,11 @@ jobs:
           git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
 
 
+  # TebakAja Proxy-2
   tebakaja_proxy_space-2:
     name: Proxy-2 Deployment
     runs-on: ubuntu-latest
-    environment: Production
+    needs: unit_testing
 
     env:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -131,3 +152,29 @@ jobs:
       - name: Push to Hugging Face
         run: |
           git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
+
+
+  # Integration Testing
+  integration_testing:
+    name: Integration Testing
+    runs-on: ubuntu-latest
+    environment: Production
+
+    needs:
+      - tebakaja_proxy_space-0 
+      - tebakaja_proxy_space-1
+      - tebakaja_proxy_space-2
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Testing Proxy Endpoints
+        run: |
+          sleep 20
+          chmod +x endpoints_test.sh && ./endpoints_test.sh

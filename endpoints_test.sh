@@ -3,6 +3,7 @@ PROD_ENDPOINT_0="https://qywok-tebakaja-proxy-space-0.hf.space"
 PROD_ENDPOINT_1="https://qywok-tebakaja-proxy-space-1.hf.space"
 PROD_ENDPOINT_2="https://qywok-tebakaja-proxy-space-2.hf.space"
 
+
 check_status() {
   if [ $1 -eq 200 ]; then
     echo "[ Success ] $2 (latency: $3 ms)"
@@ -11,7 +12,7 @@ check_status() {
   fi
 }
 
-# GET Request
+
 make_get_request() {
   START_TIME=$(date +%s%3N)
   RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X GET $1)
@@ -20,7 +21,7 @@ make_get_request() {
   check_status $RESPONSE $2 $DURATION
 }
 
-# POST Request
+
 make_post_request() {
   START_TIME=$(date +%s%3N)
   RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST $1 \
@@ -31,6 +32,7 @@ make_post_request() {
   check_status $RESPONSE $3 $DURATION
 }
 
+
 echo "-------- [ Proxy 0 ] --------"
 make_get_request "$PROD_ENDPOINT_0/stock/lists" "stock-list-prod-0"
 make_post_request "$PROD_ENDPOINT_0/stock/prediction" "{\"days\": 7, \"currency\": \"BTC-USD\"}" "stock-prediction-prod-0"
@@ -40,6 +42,7 @@ make_get_request "$PROD_ENDPOINT_0/national-currency/lists" "natcurr-list-prod-0
 make_post_request "$PROD_ENDPOINT_0/national-currency/prediction" "{\"days\": 7, \"currency\": \"BTC-USD\"}" "natcurr-prediction-prod-0"
 echo " "
 
+
 echo "-------- [ Proxy 1 ] --------"
 make_get_request "$PROD_ENDPOINT_1/stock/lists" "stock-list-prod-1"
 make_post_request "$PROD_ENDPOINT_1/stock/prediction" "{\"days\": 7, \"currency\": \"BTC-USD\"}" "stock-prediction-prod-1"
@@ -48,6 +51,7 @@ make_post_request "$PROD_ENDPOINT_1/crypto/prediction" "{\"days\": 7, \"currency
 make_get_request "$PROD_ENDPOINT_1/national-currency/lists" "natcurr-list-prod-1"
 make_post_request "$PROD_ENDPOINT_1/national-currency/prediction" "{\"days\": 7, \"currency\": \"BTC-USD\"}" "natcurr-prediction-prod-1"
 echo " "
+
 
 echo "-------- [ Proxy 2 ] --------"
 make_get_request "$PROD_ENDPOINT_2/stock/lists" "stock-list-prod-2"
