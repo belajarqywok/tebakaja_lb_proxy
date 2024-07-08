@@ -27,7 +27,7 @@ jobs:
 
   # TebakAja Proxy-0
   tebakaja_proxy_space-0:
-    name: Proxy-0 Deployment 
+    name: Proxy-0 [ Docker - Hugging Face ]
     runs-on: ubuntu-latest
     needs: unit_testing
 
@@ -70,7 +70,7 @@ jobs:
 
   # TebakAja Proxy-1
   tebakaja_proxy_space-1:
-    name: Proxy-1 Deployment
+    name: Proxy-1 [ Docker - Hugging Face ]
     runs-on: ubuntu-latest
     needs: unit_testing
 
@@ -113,7 +113,7 @@ jobs:
 
   # TebakAja Proxy-2
   tebakaja_proxy_space-2:
-    name: Proxy-2 Deployment
+    name: Proxy-2 [ Docker - Hugging Face ]
     runs-on: ubuntu-latest
     needs: unit_testing
 
@@ -154,9 +154,9 @@ jobs:
           git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
 
 
-  # Integration Testing
-  integration_testing:
-    name: Integration Testing
+  # Functional Testing
+  functional_testing:
+    name: Functional Testing
     runs-on: ubuntu-latest
     environment: Production
 
