@@ -8,9 +8,13 @@ import (
 
 	proxy "tebakaja_lb_proxy/proxy"
 
+	// Main Features
 	stock_proxy "tebakaja_lb_proxy/proxy/stock"
 	crypto_proxy "tebakaja_lb_proxy/proxy/crypto"
 	national_currency_proxy "tebakaja_lb_proxy/proxy/national_currency"
+
+	// Node Exporter
+	// exporter_proxy "tebakaja_lb_proxy/proxy/node_exporter"
 )
 
 func main() {
@@ -41,6 +45,11 @@ func main() {
 	nationalCurrencyGroup.Post("/prediction",
 		national_currency_proxy.NationalCurrencyPredictionHandler(
 			&national_currency_proxy.NationalCurrencyServiceImpl{}))
+
+	// exporterGroup := proxyService.Group("/exporter")
+	// exporterGroup.Get("/metrics",
+	// 	exporter_proxy.ExporterMetricsHandler(
+	// 		&exporter_proxy.ExporterServiceImpl{}))
 
 	port := 7860
 	log.Fatal(proxyService.Listen(fmt.Sprintf("0.0.0.0:%d", port)))
