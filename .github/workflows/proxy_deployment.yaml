@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 1
 
       - name: unit testing
-        run: echo "testing"  
+        run: go test -v ./tests -coverprofile=coverage.out
 
   # TebakAja Proxy-0
   tebakaja_proxy_space-0:
