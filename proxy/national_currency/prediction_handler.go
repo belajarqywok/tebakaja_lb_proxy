@@ -21,7 +21,7 @@ import (
 // @Produce                 json
 // @Param                   requestBody body PredictionRequest true "Request Body"
 // @Success                 200  {object} PredictionResponse
-// @Router                  /national-currency/lists [post]
+// @Router                  /national-currency/prediction [post]
 func NationalCurrencyPredictionHandler(service NationalCurrencyService) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		ctx, cancel := context.WithTimeout(c.Context(), 120*time.Second)

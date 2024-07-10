@@ -21,7 +21,7 @@ import (
 // @Produce                 json
 // @Param                   requestBody body PredictionRequest true "Request Body"
 // @Success                 200  {object} PredictionResponse
-// @Router                  /stock/lists [post]
+// @Router                  /stock/prediction [post]
 func StockPredictionHandler(service StockService) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		ctx, cancel := context.WithTimeout(c.Context(), 120 * time.Second)
