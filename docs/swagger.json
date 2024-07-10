@@ -35,7 +35,9 @@
                         }
                     }
                 }
-            },
+            }
+        },
+        "/crypto/prediction": {
             "post": {
                 "description": "Cryptocurrency Prediction",
                 "consumes": [
@@ -87,7 +89,9 @@
                         }
                     }
                 }
-            },
+            }
+        },
+        "/national-currency/prediction": {
             "post": {
                 "description": "National Currency Prediction",
                 "consumes": [
@@ -139,7 +143,9 @@
                         }
                     }
                 }
-            },
+            }
+        },
+        "/stock/prediction": {
             "post": {
                 "description": "Stock Prediction",
                 "consumes": [

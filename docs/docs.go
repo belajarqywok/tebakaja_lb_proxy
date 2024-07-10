@@ -43,7 +43,9 @@ const docTemplate = `{
                         }
                     }
                 }
-            },
+            }
+        },
+        "/crypto/prediction": {
             "post": {
                 "description": "Cryptocurrency Prediction",
                 "consumes": [
@@ -95,7 +97,9 @@ const docTemplate = `{
                         }
                     }
                 }
-            },
+            }
+        },
+        "/national-currency/prediction": {
             "post": {
                 "description": "National Currency Prediction",
                 "consumes": [
@@ -147,7 +151,9 @@ const docTemplate = `{
                         }
                     }
                 }
-            },
+            }
+        },
+        "/stock/prediction": {
             "post": {
                 "description": "Stock Prediction",
                 "consumes": [

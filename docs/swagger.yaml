@@ -170,6 +170,7 @@ paths:
       summary: Cryptocurrency List
       tags:
       - Cryptocurrency
+  /crypto/prediction:
     post:
       consumes:
       - application/json
@@ -204,6 +205,7 @@ paths:
       summary: National Currency List
       tags:
       - National Currency
+  /national-currency/prediction:
     post:
       consumes:
       - application/json
@@ -238,6 +240,7 @@ paths:
       summary: Stock List
       tags:
       - Stock
+  /stock/prediction:
     post:
       consumes:
       - application/json
