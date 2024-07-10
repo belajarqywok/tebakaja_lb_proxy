@@ -12,12 +12,19 @@ import (
 )
 
 
-/*
- * --- Cryptocurrency Prediction Handler ---
- */
+
+// CryptoPredictionHandler  godoc
+// @Summary                 Cryptocurrency Prediction
+// @Description             Cryptocurrency Prediction
+// @Tags                    Cryptocurrency
+// @Accept                  json
+// @Produce                 json
+// @Param                   requestBody body PredictionRequest true "Request Body"
+// @Success                 200  {object} PredictionResponse
+// @Router                  /crypto/lists [post]
 func CryptoPredictionHandler(service CryptoService) fiber.Handler {
 	return func(c *fiber.Ctx) error {
-		ctx, cancel := context.WithTimeout(c.Context(), 120*time.Second)
+		ctx, cancel := context.WithTimeout(c.Context(), 120 * time.Second)
 		defer cancel()
 
 		ch := make(chan ApiResponse, 1)

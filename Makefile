@@ -4,8 +4,12 @@ PROD_ENDPOINT_0=https://qywok-tebakaja-proxy-space-0.hf.space
 PROD_ENDPOINT_1=https://qywok-tebakaja-proxy-space-1.hf.space
 PROD_ENDPOINT_2=https://qywok-tebakaja-proxy-space-2.hf.space
 
-start:
+svc:
+	swag init
 	go run main.go
+
+swag:
+	swag init
 
 haproxy-test:
 	haproxy -f ./haproxy/haproxy.cfg
@@ -29,6 +33,9 @@ endpoints_check:
 # 
 #    --- Development Testing ---
 # 
+
+swag-test:
+	curl -X GET $(DEV_ENDPOINT)/swagger/index.html
 
 stock-list-test:
 	curl -X GET $(DEV_ENDPOINT)/stock/lists

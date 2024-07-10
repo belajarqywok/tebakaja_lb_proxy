@@ -13,10 +13,28 @@ import (
 	crypto_proxy "tebakaja_lb_proxy/proxy/crypto"
 	national_currency_proxy "tebakaja_lb_proxy/proxy/national_currency"
 
+	// Swagger
+	_ "tebakaja_lb_proxy/docs"
+	swagger "github.com/swaggo/fiber-swagger"
+
 	// Node Exporter
 	// exporter_proxy "tebakaja_lb_proxy/proxy/node_exporter"
 )
 
+
+// @title          TebakAja
+// @version        1.0
+// @description    TebakAja REST API Service
+// @termsOfService https://swagger.io/terms/
+
+// @contact.name   Si Mimin
+// @contact.url    https://www.tebakaja.com
+// @contact.email  tebakaja@gmail.com
+
+// @license.name   Apache 2.0
+// @license.url    http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host 192.168.137.1:7860
 func main() {
 	proxyService := fiber.New()
 	proxyService.Use(proxy.LoggingMiddleware)
@@ -46,11 +64,12 @@ func main() {
 		national_currency_proxy.NationalCurrencyPredictionHandler(
 			&national_currency_proxy.NationalCurrencyServiceImpl{}))
 
-	// exporterGroup := proxyService.Group("/exporter")
-	// exporterGroup.Get("/metrics",
-	// 	exporter_proxy.ExporterMetricsHandler(
-	// 		&exporter_proxy.ExporterServiceImpl{}))
+	proxyService.Get("/swagger/*", swagger.WrapHandler)
+	proxyService.Get("/", func(c *fiber.Ctx) error {
+		return c.Redirect("/swagger/index.html", fiber.StatusMovedPermanently)
+	})
 
+	host := "0.0.0.0"
 	port := 7860
-	log.Fatal(proxyService.Listen(fmt.Sprintf("0.0.0.0:%d", port)))
+	log.Fatal(proxyService.Listen(fmt.Sprintf("%s:%d", host, port)))
 }

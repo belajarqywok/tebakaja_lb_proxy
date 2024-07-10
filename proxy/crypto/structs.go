@@ -6,10 +6,12 @@ type ApiResponse struct {
 	Data       interface{} `json:"data"`
 }
 
+
 type PredictionRequest struct {
 	Days     int    `json:"days"`
 	Currency string `json:"currency"`
 }
+
 
 type PredictionResponse struct {
 	Message    string `json:"message"`

@@ -11,12 +11,17 @@ import (
 )
 
 
-/*
- *  --- Cryptocurrency Prediction Model Lists Handler ---
- */
+
+// CryptoListsHandler godoc
+// @Summary            Cryptocurrency List
+// @Description        Cryptocurrency List
+// @Tags               Cryptocurrency
+// @Produce            json
+// @Success            200  {object} ApiResponse
+// @Router             /crypto/lists [get]
 func CryptoListsHandler(service CryptoService) fiber.Handler {
 	return func(c *fiber.Ctx) error {
-		ctx, cancel := context.WithTimeout(c.Context(), 120*time.Second)
+		ctx, cancel := context.WithTimeout(c.Context(), 120 * time.Second)
 		defer cancel()
 
 		ch := make(chan ApiResponse, 1)

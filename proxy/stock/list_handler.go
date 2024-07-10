@@ -11,9 +11,14 @@ import (
 )
 
 
-/*
- *  --- Stock Prediction Model Lists Handler ---
- */
+
+// StockListsHandler   godoc
+// @Summary            Stock List
+// @Description        Stock List
+// @Tags               Stock
+// @Produce            json
+// @Success            200  {object} ApiResponse
+// @Router             /stock/lists [get]
 func StockListsHandler(service StockService) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		ctx, cancel := context.WithTimeout(c.Context(), 120*time.Second)

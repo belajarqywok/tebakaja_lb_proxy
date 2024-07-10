@@ -4,6 +4,11 @@ services:
   proxy:
     build:
       context: .
+      shm_size : 536870912
       dockerfile: Dockerfile
+      labels :
+        role : "proxy service"
+
     ports:
       - "7860:7860"
+

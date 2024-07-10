@@ -1,0 +1,262 @@
+definitions:
+  crypto.ApiResponse:
+    properties:
+      data: {}
+      message:
+        type: string
+      status_code:
+        type: integer
+    type: object
+  crypto.PredictionRequest:
+    properties:
+      currency:
+        type: string
+      days:
+        type: integer
+    type: object
+  crypto.PredictionResponse:
+    properties:
+      data:
+        properties:
+          currency:
+            type: string
+          predictions:
+            properties:
+              actuals:
+                items:
+                  properties:
+                    date:
+                      type: string
+                    price:
+                      type: number
+                  type: object
+                type: array
+              predictions:
+                items:
+                  properties:
+                    date:
+                      type: string
+                    price:
+                      type: number
+                  type: object
+                type: array
+            type: object
+        type: object
+      message:
+        type: string
+      status_code:
+        type: integer
+    type: object
+  national_currency.ApiResponse:
+    properties:
+      data: {}
+      message:
+        type: string
+      status_code:
+        type: integer
+    type: object
+  national_currency.PredictionRequest:
+    properties:
+      currency:
+        type: string
+      days:
+        type: integer
+    type: object
+  national_currency.PredictionResponse:
+    properties:
+      data:
+        properties:
+          currency:
+            type: string
+          predictions:
+            properties:
+              actuals:
+                items:
+                  properties:
+                    date:
+                      type: string
+                    price:
+                      type: number
+                  type: object
+                type: array
+              predictions:
+                items:
+                  properties:
+                    date:
+                      type: string
+                    price:
+                      type: number
+                  type: object
+                type: array
+            type: object
+        type: object
+      message:
+        type: string
+      status_code:
+        type: integer
+    type: object
+  stock.ApiResponse:
+    properties:
+      data: {}
+      message:
+        type: string
+      status_code:
+        type: integer
+    type: object
+  stock.PredictionRequest:
+    properties:
+      currency:
+        type: string
+      days:
+        type: integer
+    type: object
+  stock.PredictionResponse:
+    properties:
+      data:
+        properties:
+          currency:
+            type: string
+          predictions:
+            properties:
+              actuals:
+                items:
+                  properties:
+                    date:
+                      type: string
+                    price:
+                      type: number
+                  type: object
+                type: array
+              predictions:
+                items:
+                  properties:
+                    date:
+                      type: string
+                    price:
+                      type: number
+                  type: object
+                type: array
+            type: object
+        type: object
+      message:
+        type: string
+      status_code:
+        type: integer
+    type: object
+host: 192.168.137.1:7860
+info:
+  contact:
+    email: tebakaja@gmail.com
+    name: Si Mimin
+    url: https://www.tebakaja.com
+  description: TebakAja REST API Service
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://swagger.io/terms/
+  title: TebakAja
+  version: "1.0"
+paths:
+  /crypto/lists:
+    get:
+      description: Cryptocurrency List
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/crypto.ApiResponse'
+      summary: Cryptocurrency List
+      tags:
+      - Cryptocurrency
+    post:
+      consumes:
+      - application/json
+      description: Cryptocurrency Prediction
+      parameters:
+      - description: Request Body
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/crypto.PredictionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/crypto.PredictionResponse'
+      summary: Cryptocurrency Prediction
+      tags:
+      - Cryptocurrency
+  /national-currency/lists:
+    get:
+      description: National Currency List
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/national_currency.ApiResponse'
+      summary: National Currency List
+      tags:
+      - National Currency
+    post:
+      consumes:
+      - application/json
+      description: National Currency Prediction
+      parameters:
+      - description: Request Body
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/national_currency.PredictionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/national_currency.PredictionResponse'
+      summary: National Currency Prediction
+      tags:
+      - National Currency
+  /stock/lists:
+    get:
+      description: Stock List
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/stock.ApiResponse'
+      summary: Stock List
+      tags:
+      - Stock
+    post:
+      consumes:
+      - application/json
+      description: Stock Prediction
+      parameters:
+      - description: Request Body
+        in: body
+        name: requestBody
+        required: true
+        schema:
+          $ref: '#/definitions/stock.PredictionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/stock.PredictionResponse'
+      summary: Stock Prediction
+      tags:
+      - Stock
+swagger: "2.0"

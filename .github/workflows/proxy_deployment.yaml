@@ -35,6 +35,7 @@ jobs:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
       SPACE_NAME: tebakaja_proxy_space-0
       HF_USERNAME: qywok
+      ENDPOINT: qywok-tebakaja-proxy-space-0.hf.space
 
     steps:
       - name: Set global directory
@@ -58,10 +59,16 @@ jobs:
           git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
+      - name: Change Endpoint
+        run: |
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/docs.go
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/swagger.json
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/swagger.yaml
+
       - name: Add and commit changes
         run: |
           git add -A 
-          git diff-index --quiet HEAD || git commit -m "tebakaja_proxy_space-0"
+          git diff-index --quiet HEAD || git commit -m "$SPACE_NAME"
 
       - name: Push to Hugging Face
         run: |
@@ -78,6 +85,7 @@ jobs:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
       SPACE_NAME: tebakaja_proxy_space-1
       HF_USERNAME: qywok
+      ENDPOINT: qywok-tebakaja-proxy-space-1.hf.space
 
     steps:
       - name: Set global directory
@@ -101,10 +109,16 @@ jobs:
           git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
+      - name: Change Endpoint
+        run: |
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/docs.go
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/swagger.json
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/swagger.yaml
+
       - name: Add and commit changes
         run: |
           git add -A 
-          git diff-index --quiet HEAD || git commit -m "tebakaja_proxy_space-1"
+          git diff-index --quiet HEAD || git commit -m "$SPACE_NAME"
 
       - name: Push to Hugging Face
         run: |
@@ -121,6 +135,7 @@ jobs:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
       SPACE_NAME: tebakaja_proxy_space-2
       HF_USERNAME: qywok
+      ENDPOINT: qywok-tebakaja-proxy-space-2.hf.space
 
     steps:
       - name: Set global directory
@@ -144,10 +159,16 @@ jobs:
           git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
+      - name: Change Endpoint
+        run: |
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/docs.go
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/swagger.json
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/swagger.yaml
+
       - name: Add and commit changes
         run: |
           git add -A 
-          git diff-index --quiet HEAD || git commit -m "tebakaja_proxy_space-2"
+          git diff-index --quiet HEAD || git commit -m "$SPACE_NAME"
 
       - name: Push to Hugging Face
         run: |

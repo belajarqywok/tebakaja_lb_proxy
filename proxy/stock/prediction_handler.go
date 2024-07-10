@@ -12,9 +12,16 @@ import (
 )
 
 
-/*
- * --- Stock Prediction Handler ---
- */
+
+// StockPredictionHandler   godoc
+// @Summary                 Stock Prediction
+// @Description             Stock Prediction
+// @Tags                    Stock
+// @Accept                  json
+// @Produce                 json
+// @Param                   requestBody body PredictionRequest true "Request Body"
+// @Success                 200  {object} PredictionResponse
+// @Router                  /stock/lists [post]
 func StockPredictionHandler(service StockService) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		ctx, cancel := context.WithTimeout(c.Context(), 120 * time.Second)

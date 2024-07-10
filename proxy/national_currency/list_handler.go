@@ -11,9 +11,14 @@ import (
 )
 
 
-/*
- *  --- National Currency Prediction Model Lists Handler ---
- */
+
+// NationalCurrencyListsHandler godoc
+// @Summary            National Currency List
+// @Description        National Currency List
+// @Tags               National Currency
+// @Produce            json
+// @Success            200  {object} ApiResponse
+// @Router             /national-currency/lists [get]
 func NationalCurrencyListsHandler(service NationalCurrencyService) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		ctx, cancel := context.WithTimeout(c.Context(), 120*time.Second)

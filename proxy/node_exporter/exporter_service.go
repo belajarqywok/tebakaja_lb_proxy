@@ -28,13 +28,11 @@ func (s *ExporterServiceImpl) ExporterMetricsService(ctx context.Context) (strin
 		return "", fmt.Errorf("request failed with status code: %d", resp.StatusCode)
 	}
 
-	// Read the response body as plain text
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return "", fmt.Errorf("failed to read response body: %v", err)
 	}
 
-	// Convert []byte to string
 	metricsResponse := string(body)
 
 	return metricsResponse, nil
