@@ -2,6 +2,8 @@
 PROD_ENDPOINT_0="https://qywok-tebakaja-proxy-space-0.hf.space"
 PROD_ENDPOINT_1="https://qywok-tebakaja-proxy-space-1.hf.space"
 PROD_ENDPOINT_2="https://qywok-tebakaja-proxy-space-2.hf.space"
+PROD_ENDPOINT_3="https://qywok-tebakaja-proxy-space-3.hf.space"
+PROD_ENDPOINT_4="https://qywok-tebakaja-proxy-space-4.hf.space"
 
 
 check_status() {
@@ -60,4 +62,24 @@ make_get_request "$PROD_ENDPOINT_2/crypto/lists" "crypto-list-prod-2"
 make_post_request "$PROD_ENDPOINT_2/crypto/prediction" "{\"days\": 7, \"currency\": \"BTC-USD\"}" "crypto-prediction-prod-2"
 make_get_request "$PROD_ENDPOINT_2/national-currency/lists" "natcurr-list-prod-2"
 make_post_request "$PROD_ENDPOINT_2/national-currency/prediction" "{\"days\": 7, \"currency\": \"BTC-USD\"}" "natcurr-prediction-prod-2"
+echo " "
+
+
+echo "-------- [ Proxy 3 ] --------"
+make_get_request "$PROD_ENDPOINT_3/stock/lists" "stock-list-prod-3"
+make_post_request "$PROD_ENDPOINT_3/stock/prediction" "{\"days\": 7, \"currency\": \"BTC-USD\"}" "stock-prediction-prod-3"
+make_get_request "$PROD_ENDPOINT_3/crypto/lists" "crypto-list-prod-3"
+make_post_request "$PROD_ENDPOINT_3/crypto/prediction" "{\"days\": 7, \"currency\": \"BTC-USD\"}" "crypto-prediction-prod-3"
+make_get_request "$PROD_ENDPOINT_3/national-currency/lists" "natcurr-list-prod-3"
+make_post_request "$PROD_ENDPOINT_3/national-currency/prediction" "{\"days\": 7, \"currency\": \"BTC-USD\"}" "natcurr-prediction-prod-3"
+echo " "
+
+
+echo "-------- [ Proxy 4 ] --------"
+make_get_request "$PROD_ENDPOINT_4/stock/lists" "stock-list-prod-4"
+make_post_request "$PROD_ENDPOINT_4/stock/prediction" "{\"days\": 7, \"currency\": \"BTC-USD\"}" "stock-prediction-prod-4"
+make_get_request "$PROD_ENDPOINT_4/crypto/lists" "crypto-list-prod-4"
+make_post_request "$PROD_ENDPOINT_4/crypto/prediction" "{\"days\": 7, \"currency\": \"BTC-USD\"}" "crypto-prediction-prod-4"
+make_get_request "$PROD_ENDPOINT_4/national-currency/lists" "natcurr-list-prod-4"
+make_post_request "$PROD_ENDPOINT_4/national-currency/prediction" "{\"days\": 7, \"currency\": \"BTC-USD\"}" "natcurr-prediction-prod-4"
 echo " "

@@ -26,7 +26,7 @@ RUN cat > ${DOTENV} <<EOF
 TEBAKAJA_PROXY_HOST=${HOST}
 TEBAKAJA_PROXY_PORT=${PORT}
 
-TEBAKAJA_CORS_ALLOW_ORIGINS=https://huggingface.co,https://qywok-tebakaja-proxy-space-0.hf.space,https://qywok-tebakaja-proxy-space-1.hf.space,https://qywok-tebakaja-proxy-space-2.hf.space
+TEBAKAJA_CORS_ALLOW_ORIGINS=https://huggingface.co,https://qywok-tebakaja-proxy-space-0.hf.space,https://qywok-tebakaja-proxy-space-1.hf.space,https://qywok-tebakaja-proxy-space-2.hf.space,https://qywok-tebakaja-proxy-space-3.hf.space,https://qywok-tebakaja-proxy-space-4.hf.space
 TEBAKAJA_CORS_ALLOW_HEADERS=*
 TEBAKAJA_CORS_ALLOW_METHODS=GET,POST
 EOF

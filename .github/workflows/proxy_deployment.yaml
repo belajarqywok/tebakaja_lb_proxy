@@ -175,6 +175,106 @@ jobs:
           git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
 
 
+  # TebakAja Proxy-3
+  tebakaja_proxy_space-3:
+    name: Proxy-3 [ Docker - Hugging Face ]
+    runs-on: ubuntu-latest
+    needs: unit_testing
+
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      SPACE_NAME: tebakaja_proxy_space-3
+      HF_USERNAME: qywok
+      ENDPOINT: qywok-tebakaja-proxy-space-3.hf.space
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1000
+
+      - name: Check git status
+        run: git status
+
+      - name: Configure git
+        run: |
+          git config --local user.email "alfariqyraihan@gmail.com"
+          git config --local user.name "qywok"
+
+      - name: Pull changes from remote
+        run: |
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
+          (git merge --strategy-option theirs)
+
+      - name: Change Endpoint
+        run: |
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/docs.go
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/swagger.json
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/swagger.yaml
+
+      - name: Add and commit changes
+        run: |
+          git add -A 
+          git diff-index --quiet HEAD || git commit -m "$SPACE_NAME"
+
+      - name: Push to Hugging Face
+        run: |
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
+
+
+  # TebakAja Proxy-4
+  tebakaja_proxy_space-4:
+    name: Proxy-4 [ Docker - Hugging Face ]
+    runs-on: ubuntu-latest
+    needs: unit_testing
+
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      SPACE_NAME: tebakaja_proxy_space-4
+      HF_USERNAME: qywok
+      ENDPOINT: qywok-tebakaja-proxy-space-4.hf.space
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1000
+
+      - name: Check git status
+        run: git status
+
+      - name: Configure git
+        run: |
+          git config --local user.email "alfariqyraihan@gmail.com"
+          git config --local user.name "qywok"
+
+      - name: Pull changes from remote
+        run: |
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
+          (git merge --strategy-option theirs)
+
+      - name: Change Endpoint
+        run: |
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/docs.go
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/swagger.json
+          sed -i "s/192.168.137.1:7860/$ENDPOINT/g" docs/swagger.yaml
+
+      - name: Add and commit changes
+        run: |
+          git add -A 
+          git diff-index --quiet HEAD || git commit -m "$SPACE_NAME"
+
+      - name: Push to Hugging Face
+        run: |
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
+
+
   # Functional Testing
   functional_testing:
     name: Functional Testing
@@ -185,6 +285,8 @@ jobs:
       - tebakaja_proxy_space-0 
       - tebakaja_proxy_space-1
       - tebakaja_proxy_space-2
+      - tebakaja_proxy_space-3
+      - tebakaja_proxy_space-4
 
     steps:
       - name: Set global directory

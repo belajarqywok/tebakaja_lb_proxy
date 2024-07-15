@@ -61,11 +61,13 @@ func main() {
 	}))
 
 	proxyService.Use(func(c *fiber.Ctx) error {
-		c.Set("Content-Security-Policy", fmt.Sprintf("frame-ancestors 'self' %s %s %s %s",
+		c.Set("Content-Security-Policy", fmt.Sprintf("frame-ancestors 'self' %s %s %s %s %s %s",
 			"https://huggingface.co",
 			"https://qywok-tebakaja-proxy-space-0.hf.space",
 			"https://qywok-tebakaja-proxy-space-1.hf.space",
 			"https://qywok-tebakaja-proxy-space-2.hf.space",
+			"https://qywok-tebakaja-proxy-space-3.hf.space",
+			"https://qywok-tebakaja-proxy-space-4.hf.space",
 		))
 		return c.Next()
 	})
