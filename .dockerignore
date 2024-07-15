@@ -11,6 +11,7 @@ README.md
 /haproxy
 
 # Compose
+Dockerfile
 docker-compose.yaml
 
 # Make
@@ -23,6 +24,7 @@ Makefile
 runner.conf
 
 # Testing
+.env
 /tests
 /postman
 coverage.out
