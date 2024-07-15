@@ -8,8 +8,8 @@ type ApiResponse struct {
 
 
 type PredictionRequest struct {
-	Days     int    `json:"days"`
-	Currency string `json:"currency"`
+	Days     int    `json:"days" validate:"gte=1,lte=31"`
+	Currency string `json:"currency" validate:"required,min=4,max=16"`
 }
 
 

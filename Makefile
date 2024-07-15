@@ -8,6 +8,9 @@ svc:
 	swag init
 	go run main.go
 
+unittest:
+	go test -v ./tests -coverprofile=coverage.out
+
 swag:
 	swag init
 
@@ -26,6 +29,9 @@ traefik-test:
 		--entryPoints.web.http.redirections.entryPoint.scheme=https \
 		--api.dashboard=true \
 		--api.insecure=false
+
+hot-reload:
+	freeze -c runner.conf
 
 endpoints_check:
 	bash -c 'chmod +x endpoints_test.sh && ./endpoints_test.sh'

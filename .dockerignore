@@ -1,20 +1,32 @@
-# git and github
+# Git and Github
 /.github
 README.md
 
-# vscode
+# VScode
 /.vscode 
 
-# proxies
+# Proxies
 /nginx
 /traefik
 /haproxy
 
-# compose
+# Compose
 docker-compose.yaml
 
-# make
+# Make
 Makefile
 
-# postman
+# Postman
 /postman
+
+# Fresh
+runner.conf
+
+# Testing
+/tests
+/postman
+coverage.out
+endpoints_test.sh
+
+# Temporary
+/tmp

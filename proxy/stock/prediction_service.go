@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"encoding/json"
 
-	proxy "tebakaja_lb_proxy/proxy"
+	helpers "tebakaja_lb_proxy/proxy/helpers"
 )
 
 
@@ -23,7 +23,7 @@ func (s *StockServiceImpl) StockPredictionService(ctx context.Context, req Predi
 		}, err
 	}
 
-	endpoint := fmt.Sprintf("%s/prediction", proxy.GetEndpointByRestService("stock"))
+	endpoint := fmt.Sprintf("%s/prediction", helpers.GetEndpointService("stock"))
 	httpReq, err := http.NewRequestWithContext(ctx, "POST", endpoint, bytes.NewBuffer(reqBody))
 	if err != nil {
 		return ApiResponse{

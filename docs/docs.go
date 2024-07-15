@@ -203,12 +203,19 @@ const docTemplate = `{
         },
         "crypto.PredictionRequest": {
             "type": "object",
+            "required": [
+                "currency"
+            ],
             "properties": {
                 "currency": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 16,
+                    "minLength": 4
                 },
                 "days": {
-                    "type": "integer"
+                    "type": "integer",
+                    "maximum": 31,
+                    "minimum": 1
                 }
             }
         },
@@ -278,12 +285,19 @@ const docTemplate = `{
         },
         "national_currency.PredictionRequest": {
             "type": "object",
+            "required": [
+                "currency"
+            ],
             "properties": {
                 "currency": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 16,
+                    "minLength": 4
                 },
                 "days": {
-                    "type": "integer"
+                    "type": "integer",
+                    "maximum": 31,
+                    "minimum": 1
                 }
             }
         },
@@ -353,12 +367,19 @@ const docTemplate = `{
         },
         "stock.PredictionRequest": {
             "type": "object",
+            "required": [
+                "currency"
+            ],
             "properties": {
                 "currency": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 16,
+                    "minLength": 4
                 },
                 "days": {
-                    "type": "integer"
+                    "type": "integer",
+                    "maximum": 31,
+                    "minimum": 1
                 }
             }
         },

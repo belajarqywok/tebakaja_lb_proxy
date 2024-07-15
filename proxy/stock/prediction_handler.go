@@ -9,6 +9,9 @@ import (
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/go-playground/validator/v10"
+
+	helpers "tebakaja_lb_proxy/proxy/helpers"
 )
 
 
@@ -45,6 +48,16 @@ func StockPredictionHandler(service StockService) fiber.Handler {
 				}
 				return
 			}
+
+			if err := helpers.ValidateStruct(predictionReq); err != nil {
+        errors := err.(validator.ValidationErrors)
+				
+				ch <- ApiResponse{
+					Message:    fmt.Sprintf("%v", errors),
+					StatusCode: http.StatusBadRequest,
+				}
+        return
+    	}
 
 			apiResponse, err := service.StockPredictionService(ctx, predictionReq)
 			if err != nil {

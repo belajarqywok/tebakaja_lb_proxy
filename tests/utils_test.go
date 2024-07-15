@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	proxy "tebakaja_lb_proxy/proxy"
+	helpers "tebakaja_lb_proxy/proxy/helpers"
 )
 
 func IsStringReflect(x interface{}) bool {
@@ -28,7 +28,7 @@ func TestGetEndpointByRestService(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.service, func(t *testing.T) {
-			endpoint := proxy.GetEndpointByRestService(tt.service)
+			endpoint := helpers.GetEndpointService(tt.service)
 
 			if got := IsStringReflect(endpoint); got != tt.want {
 				t.Errorf("IsStringReflect(%v) = %v, want %v", endpoint, got, tt.want)

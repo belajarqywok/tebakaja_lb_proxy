@@ -5,7 +5,8 @@ import (
 	"context"
 	"net/http"
 	"encoding/json"
-	proxy "tebakaja_lb_proxy/proxy"
+
+	helpers "tebakaja_lb_proxy/proxy/helpers"
 )
 
 
@@ -13,7 +14,7 @@ import (
  *  --- National Currency Prediction Model Lists Service ---
  */
 func (s *NationalCurrencyServiceImpl) NationalCurrencyListsService(ctx context.Context) (ApiResponse, error) {
-	endpoint := fmt.Sprintf("%s/lists", proxy.GetEndpointByRestService("national"))
+	endpoint := fmt.Sprintf("%s/lists", helpers.GetEndpointService("national"))
 	req, err := http.NewRequestWithContext(ctx, "GET", endpoint, nil)
 	if err != nil {
 		return ApiResponse{

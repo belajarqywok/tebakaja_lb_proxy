@@ -10,9 +10,15 @@ definitions:
   crypto.PredictionRequest:
     properties:
       currency:
+        maxLength: 16
+        minLength: 4
         type: string
       days:
+        maximum: 31
+        minimum: 1
         type: integer
+    required:
+    - currency
     type: object
   crypto.PredictionResponse:
     properties:
@@ -58,9 +64,15 @@ definitions:
   national_currency.PredictionRequest:
     properties:
       currency:
+        maxLength: 16
+        minLength: 4
         type: string
       days:
+        maximum: 31
+        minimum: 1
         type: integer
+    required:
+    - currency
     type: object
   national_currency.PredictionResponse:
     properties:
@@ -106,9 +118,15 @@ definitions:
   stock.PredictionRequest:
     properties:
       currency:
+        maxLength: 16
+        minLength: 4
         type: string
       days:
+        maximum: 31
+        minimum: 1
         type: integer
+    required:
+    - currency
     type: object
   stock.PredictionResponse:
     properties:

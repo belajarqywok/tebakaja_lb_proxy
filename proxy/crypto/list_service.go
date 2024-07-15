@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"encoding/json"
 	
-	proxy "tebakaja_lb_proxy/proxy"
+	helpers "tebakaja_lb_proxy/proxy/helpers"
 )
 
 
@@ -14,7 +14,7 @@ import (
  *  --- Cryptocurrency Prediction Model Lists Service ---
  */
 func (s *CryptoServiceImpl) CryptoListsService(ctx context.Context) (ApiResponse, error) {
-	endpoint := fmt.Sprintf("%s/lists", proxy.GetEndpointByRestService("crypto"))
+	endpoint := fmt.Sprintf("%s/lists", helpers.GetEndpointService("crypto"))
 	req, err := http.NewRequestWithContext(ctx, "GET", endpoint, nil)
 	if err != nil {
 		return ApiResponse{

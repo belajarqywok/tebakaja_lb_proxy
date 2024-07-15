@@ -1,4 +1,4 @@
-package proxy
+package helpers
 
 import "math/rand"
 
@@ -26,7 +26,7 @@ var serviceUrls = map[string][]string{
 	},
 }
 
-func GetEndpointByRestService(svc_name string) string {
+func GetEndpointService(svc_name string) string {
 	var selectedUrls []string
 	switch svc_name {
 	case "crypto":

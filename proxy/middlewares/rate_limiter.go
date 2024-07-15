@@ -1,28 +1,12 @@
-package proxy
+package middlewares
 
 import (
-	"log"
-	"net/http"
 	"time"
+	"net/http"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/limiter"
 )
-
-
-/*
- *  --- Logging Middleware ---
-*/
-func LoggingMiddleware(c *fiber.Ctx) error {
-	start := time.Now()
-	err   := c.Next()
-
-	log.Printf("[%s] %s %s - %d %s in %v", time.Now().Format("2006-01-02 15:04:05"),
-		c.Method(), c.Path(), c.Response().StatusCode(),
-		http.StatusText(c.Response().StatusCode()), time.Since(start))
-
-	return err
-}
 
 
 /*
